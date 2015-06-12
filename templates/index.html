@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  	<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+</style>
+	<script type="text/javascript" src="static/jquery-1.11.2.min.js"> </script>
+	<link rel="stylesheet" href="static/bootstrap.min.css">
+	<link rel="stylesheet" href="static/bootstrap-theme.min.css">
+	<script src="static/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static/bootstrap-filestyle.min.js"> </script>
+  	 <script type=text/javascript>
+    $(function() {
+      $('a#translate').bind('click', function() {
+        $.getJSON('/translate', {
+          textVal: $('input[name="textVal"]').val(),
+          langVal: $('input[name="langVal"]').val()
+        }, function(data) {
+          $("#translatedText").text(data.result);
+        });
+        return false;
+      });
+    });
+  </script>
+  
+  	
+  	<style type="text/css">
+		
+		
+		.machine-main{
+			margin: 20px;
+		}
+		html,body,.container
+{
+    height:100%;
+}
+.container
+{
+    display:table;
+    width: 100%;
+    margin-top: -50px;
+    padding-top: 50px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.row
+{
+    height: 100%;
+    display: table-row;
+}
+.col-md-3.no-float, .col-md-9.no-float {
+    float: none; /* thanks baxabbit */
+}
+.col-md-3
+{
+    display: table-cell;
+    width: 50%;
+}
+.col-md-9
+{
+    display: table-cell;
+    width: 50%;
+}
+.translateText {
+    width: 250px;
+    height:70px;
+}
+	</style>
+  </head>
+  <body>
+    <div class="container">
+    
+    
+      <div class="header">
+        <h3 class="text-muted">Machine Learning Web Services</h3>
+      </div>
+      <hr/>    
+      <div class="machine-main">
+	    <ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#text">Text Processing</a></li>
+		<li><a data-toggle="tab" href="#image">Image Processing</a></li>
+		<li><a data-toggle="tab" href="#multi">Feature Detection</a></li>
+		<li><a data-toggle="tab" href="#translate">Language Translation</a></li>
+	
+
+	    </ul>
+
+
+	   <div class="tab-content">
+		<div id="text" class="tab-pane fade in active">
+		   </br>
+		   </br>
+		   
+		   <!-- Text Processing Starts Here-->
+		   
+		   
+		   
+		
+ 
+   <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <textarea class="form-control" rows="3" placeholder="Write your text. Minimum length 10 characters"></textarea>   
+        </div>
+        <div class="col-md-6">
+            <p id="result"></p>
+        </div>
+    </div>
+   </div>
+		   <!--Text Processing ends here-->
+		
+		</div>
+		 <div id="image" class="tab-pane fade in">
+		 		<div class="container">
+				    <div class="row">
+				        <div class="col-md-3 no-float">
+			        		<br/>
+						   <br/>
+				      	    <form action="upload" method="post" enctype="multipart/form-data" target="createResult">
+				               <input type="file" name="file" class="filestyle" data-input="false" ><br /><br />
+				               
+				               <input type="submit" name="submit" value="&nbsp&nbsp Denoise Image &nbsp&nbsp" class="btn btn-default btn-success"><br /><br />
+				      	      <input type="submit" name="submit" value="&nbsp&nbsp&nbsp Detect Face &nbsp&nbsp&nbsp&nbsp&nbsp" class="btn btn-default btn-success" ><br /><br />
+				      	      <input type="submit" name="submit" value="Detect Blue Colour" class="btn btn-default btn-success" ><br /><br />
+				      	      <input type="submit" name="submit" value="&nbsp Smoothen Image" class="btn btn-default btn-success" ><br /><br />
+				      	    </form>
+				      	   
+				        </div>
+				        <div class="col-md-9 no-float">
+				            <br/>
+				            <br/>
+                        <iframe name="createResult" width=850 height=400 frameBorder=0></iframe>
+				        </div>
+				    </div>
+				</div>
+		</div>
+		
+		
+		<!-- Insert a div here for new tab-->
+		
+		 <div id="multi" class="tab-pane fade in">
+		 
+		 <br/>
+		 <br/>
+		 				    <div class="row">
+				        <div class="col-md-3 no-float">
+		   <form action="multi" method="post" enctype="multipart/form-data" target="featureDetection">
+            <input type="file" multiple="" name="file[]" class="filestyle" data-input="false"><br /><br/>
+            <input type="submit" value="Detect Feature"  class="btn btn-default btn-success">
+         </form>
+         
+         </div>
+          <div class="col-md-9 no-float">
+				            <br/>
+				            <br/>
+                        <iframe name="featureDetection" width=850 height=400 frameBorder=0></iframe>
+				        </div>
+          </div>
+		 
+		 
+		  </div>
+		 
+
+
+		 
+	   	    <div id="translate" class="tab-pane fade in">
+
+	   	    <div class="row">
+	   	    	 <div class="col-md-50 no-float">
+
+
+	   	    <div>
+	   	    	<br/>
+	   	    	<br/>
+			      <p>
+			    Text to be translated &nbsp&nbsp&nbsp  <br/><br/> <input class = "translateText" type="text" size="50" name="textVal"> 
+			   <br/> <br/> Language &nbsp&nbsp&nbsp <br/><br/>
+
+
+
+			   <input type="text" size="5" name="langVal"> 
+
+			 
+
+
+			    <br/>
+			    <br/>
+
+			    <br/>
+			    <br/>
+			   <b> <i> Translated text goes here </b></i><br/><br/><br/>
+			    <span id="translatedText"></span>
+			    <p><a href="javascript:void();" id="translate"  class="btn btn-default btn-success">Translate Text</a>
+          </div>
+          </div>
+
+			    <div class="col-md-3 no-float">
+				            <br/>
+				            <br/>
+                       
+                        	
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<table class="tg">
+
+  <tr>
+    <th class="tg-031e">Language</th>
+    <th class="tg-031e">Code</th>
+    <th class="tg-031e">Language</th>
+    <th class="tg-031e">Code</th>
+  </tr>
+  <tr>
+    <td class="tg-031e">Afrikaans</td>
+    <td class="tg-031e">af</td>
+    <td class="tg-031e">French</td>
+    <td class="tg-031e">fr</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Albanian</td>
+    <td class="tg-031e">sq</td>
+    <td class="tg-031e">German</td>
+    <td class="tg-031e">de</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Arabic</td>
+    <td class="tg-031e">ar</td>
+    <td class="tg-031e">Greek</td>
+    <td class="tg-031e">el</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Azerbaijani</td>
+    <td class="tg-031e">az</td>
+    <td class="tg-031e">Gujarati</td>
+    <td class="tg-031e">gu</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Basque</td>
+    <td class="tg-031e">eu</td>
+    <td class="tg-031e">Hindi</td>
+    <td class="tg-031e">hi</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Bengali</td>
+    <td class="tg-031e">bn</td>
+    <td class="tg-031e">Italian</td>
+    <td class="tg-031e">it</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Belarusian</td>
+    <td class="tg-031e">be</td>
+    <td class="tg-031e">Japanese</td>
+    <td class="tg-031e">ja</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Bulgarian</td>
+    <td class="tg-031e">bg</td>
+    <td class="tg-031e">Kannada</td>
+    <td class="tg-031e">kn</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Catalan</td>
+    <td class="tg-031e">ca</td>
+    <td class="tg-031e">Korean</td>
+    <td class="tg-031e">ko</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Chinese Simplified</td>
+    <td class="tg-031e">zh-CN</td>
+    <td class="tg-031e">Spanish</td>
+    <td class="tg-031e">es</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Chinese Traditional</td>
+    <td class="tg-031e">zh-TW</td>
+    <td class="tg-031e">Swedish</td>
+    <td class="tg-031e">sv</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Croatian</td>
+    <td class="tg-031e">hr</td>
+    <td class="tg-031e">Tamil</td>
+    <td class="tg-031e">ta</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Czech</td>
+    <td class="tg-031e">cs</td>
+    <td class="tg-031e">Telugu</td>
+    <td class="tg-031e">te</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">Danish</td>
+    <td class="tg-031e">da</td>
+    <td class="tg-031e">Urdu</td>
+    <td class="tg-031e">ur</td>
+  </tr>
+</table>
+
+                       
+				        </div>
+
+          </div>
+
+
+
+	   		</div>
+	  
+
+
+
+
+	   	<!--- Language Traslator-->
+
+
+		 
+
+     
+    </div>
+    
+       </div>
+    
+      <script type="text/javascript" src="static/js/jquery.js"></script>
+    	<script type="text/javascript">
+    $("textarea").keyup(function(e){
+        console.log('keycode '+e.keyCode);
+        switch (e.keyCode) {
+            case 8:  // Backspace
+                console.log('backspace'+e);
+            case 9:  // Tab
+                console.log('Tab');
+            case 13: // Enter
+                console.log('Enter');
+            case 37: // Left
+                console.log('Left');
+            case 38: // Up
+                console.log('Up');
+            case 39: // Right
+                console.log('Right');
+            case 40: // Down
+                console.log('Down');
+            break;
+ 
+            default:
+            var input = $('textarea').val();
+            $('#result').removeClass("alert alert-warning");
+            $('#result').removeClass("alert alert-danger");
+            $('#result').removeClass("alert alert-success");
+            if (input.length > 10){
+ 
+            $.get('/api/v1/sentiment/'+input,function(result){
+ 
+                if(result.polarity < -0.01){
+ 
+                    $('#result').addClass("alert alert-danger").text(input);
+                } else if( result.polarity >= -0.01 && result.polarity <= 0.2){
+                    $('#result').addClass("alert alert-warning").text(input);
+                }else{
+                    $('#result').addClass("alert alert-success").text(input);
+                }
+ 
+            })
+        }
+    }
+ 
+ 
+    });
+ 
+</script>
+    
+  </body>
+</html>
+ 
